@@ -1,28 +1,39 @@
 import React from "react";
-import { useStaticQuery, graphql } from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby';
+import {
+    ProfileWrapper,
+    ButtonGroup
+} from './style';
+import MenuLinks from "../MenuLinks/MenuLinks";
+
 
 const Profile = () => {
+
     const {
         site: {
-            siteMetadata: {title, position, description},
+            siteMetadata: {author, position},
         }
     } = useStaticQuery(graphql`
         query siteMetadata {
           site {
             siteMetadata {
-              description,
-              title,
+              author,
               position,
             }
           }
         }
     `)
     return(
-        <div className="Profile-wrapper">
-            <h1>{title}</h1>
+        <ProfileWrapper>
+            <h1>{author}</h1>
             <h2>{position}</h2>
-            <p>{description}</p>
-        </div>
+
+            <ButtonGroup>
+
+                <MenuLinks/>
+            </ButtonGroup>
+
+        </ProfileWrapper>
     )
 }
 
